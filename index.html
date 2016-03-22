@@ -1,0 +1,76 @@
+<!doctype html>
+<html ng-app="application" ng-controller="controller">
+  <head >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+    href="bower_components/angular-material/angular-material.min.css">
+    <script src="./bower_components/angular/angular.js" type="text/javascript" ></script>
+       <script src="./bower_components/angular-animate/angular-animate.js" type="text/javascript" ></script>
+       <script src="./bower_components/angular-aria/angular-aria.js" type="text/javascript" ></script>
+       <script src="./bower_components/angular-material/angular-material.js" type="text/javascript" ></script>
+       <script src="./bower_components/angular-material-icons/angular-material-icons.js" type="text/javascript" ></script>
+    <title ng-bind="appTitle+':'+search_status"></title>
+  </head>
+  <body ng-cloak>
+    <md-content>
+      <md-toolbar class="md-toolbar-tools">
+        <ng-md-icon icon="github-circle" style="fill: white"></ng-md-icon>
+        <h2>{{appTitle}}</h2>
+        <md-input-container>
+          <label>Access Token</label>
+          <input ng-model='accessToken' ng-init='accessToken="4caa3408e12c695e2ab5fddb1a3f416a0ffc1209"' placeholder='accessToken'>
+        </md-input-container>
+      </md-toolbar>
+
+
+
+      <md-autocomplete
+      md-search-text='searchTerm'
+      md-selected-item="selectedItem"
+      md-items="item in items"
+      md-search-text-change="textChange(searchTerm)"
+      md-selected-item-change="textSelect(selectedItem)"
+      md-delay="500"
+      >
+        <md-item-template>
+          {{selectedItem.login}}
+          <span md-highlight-text="searchText">{{item.login}}</span>
+        </md-item-template>
+        <md-not-found>
+          No matches found.
+        </md-not-found>
+      </md-autocomplete>
+      <div ng-if='subject'>
+        <h3><a href="{{subject.user.html_url}}" target="_blank">{{subject.user.name}}</a></h3>
+        <h4 ng-if="subject.user.email">(<a href="mailto:{{subject.user.email}}" target="_blank">{{subject.user.email}}</a>)</h4>
+        <img ng-src="{{subject.user.avatar_url}}">
+        <div ng-if="subject.user.bio">{{subject.user.bio}}</div>
+        <a ng-if="subject.user.blog" href="{{subject.user.blog}}" target="_blank">Learn more by reading {{subject.user.name}}'s blog.</a>
+        <div  layout="column" style="display: flex; align-items: center; justify-content: center;">
+             <md-card ng-repeat='repository in subject.repositories' style="width:80%">
+                    <md-card-title>
+                      <md-card-title-text>
+                        <span class="md-headline"><a href='{{repository.html_url}}' target="_blank">{{repository.name}}</a></span>
+                        <span class="md-subhead">{{repository.description}}</span>
+                      </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                      <ng-md-icon icon="star" style="fill: red">Stars</ng-md-icon><span>{{repository.stargazers_count}}</span>
+                    </md-card-content>
+
+
+
+                    <md-card-actions layout="row" layout-align="end center">
+                      <a class="md-button" href="{{repository.html_url}}/issues" target="_blank">Issues</a>
+                    </md-card-actions>
+                  </md-card>
+       </div>
+    </div>
+    <div ng-if='!subject'>
+      Type to search
+    </div>
+
+    </md-content>
+    <script src='./script.js'></script>
+  </body>
+</html>
