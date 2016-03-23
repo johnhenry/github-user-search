@@ -2,15 +2,21 @@
     <div flex-xs flex-gt-xs="100" layout="column">
       <md-card>
         <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline"><a class="md-button" href="{{subject.user.html_url}}" target="_blank">{{subject.user.name}}</a></span>
-            <span class="md-subhead" ng-if="subject.user.email"><a href="mailto:{{subject.user.email}}" target="_blank">{{subject.user.email}}</a></span>
-            <p class="md-subhead" ng-if="subject.user.bio">{{subject.user.bio}}</p>
-            <p class="md-subhead" ></p>
-          </md-card-title-text>
           <md-card-title-media class="md-media-xl card-media">
             <img ng-src="{{subject.user.avatar_url}}" class="md-media-md" alt="user image">
           </md-card-title-media>
+          <md-card-title-text>
+
+            <span class="md-headline">
+              <a class="md-button" href="{{subject.user.html_url}}" target="_blank">{{subject.user.name}}'s Profile</a>
+              <a ng-if="subject.user.email" href="mailto:{{subject.user.email}}" target="_blank">
+                <ng-md-icon icon="mail" style="fill:rgb(63,81,181)" size="16"></ng-md-icon>
+              </a>
+            </span>
+
+            <p class="md-subhead" ng-if="subject.user.bio">{{subject.user.bio}}</p>
+            <p class="md-subhead" ></p>
+          </md-card-title-text>
         </md-card-title>
         <md-card-content>
           <md-toolbar>
@@ -19,13 +25,12 @@
             </h2>
           </md-toolbar>
           <md-list>
-            <md-list-item class="md-3-line" ng-repeat="repository in subject.repositories"  ng-animate="'animate'">
+            <md-list-item class="md-3-line" ng-repeat="repository in subject.repositories">
               <div class="md-list-item-text">
-                <h3 class="md-headline"><a href='{{repository.html_url}}' target="_blank">{{repository.name}}</a></h3>
-                <h4><ng-md-icon icon="star" style="fill: red">Stars</ng-md-icon><span>{{repository.stargazers_count}}</span></h4>
+                <h3 class="md-headline"><a href="{{repository.html_url}}" target="_blank">{{repository.name}}</a> (<a class="md-subhead" href="{{repository.html_url}}/issues" target="_blank">issues</a>)</h3>
+                <h4><ng-md-icon icon="star" style="fill:#f69c55" size="16"></ng-md-icon><span >{{repository.stargazers_count}} Stars</span></h4>
                 <p class="md-subhead">{{repository.description}}</p>
               </div>
-              <a class="md-secondary" href="{{repository.html_url}}/issues" target="_blank">Issues</a>
               <md-divider ng-if="!$last"></md-divider>
             </md-list-item>
           </md-list>

@@ -17149,8 +17149,13 @@ md-tooltip {
   .hide-print:not(.show-print):not(.show) {
     display: none !important; } }
 
+/*minor visual tweaks*/
 md-card md-card-content {
   padding: 0px; }
 
 md-autocomplete {
   display: inline-block; }
+
+md-toolbar h2 {
+  padding: 4px;
+  text-align: center; }
