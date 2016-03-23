@@ -1,0 +1,35 @@
+{
+  "dir"   : "www",
+  "nails" : [
+    {
+      "plugin" : "nail-copy",
+      "tag"    : ["static"],
+      "source" : [
+        "./index.html",
+        "views",
+        "./bower_components/angular/angular.js",
+        "./bower_components/angular-route/angular-route.js",
+        "./bower_components/angular-animate/angular-animate.js",
+        "./bower_components/angular-aria/angular-aria.js",
+        "./bower_components/angular-material/angular-material.js",
+        "./bower_components/angular-material-icons/angular-material-icons.js"
+      ]
+    },
+    {
+      "plugin" : "nail-css-edge",
+      "tag"    : ["css"],
+      "mode":"scss",
+      "minify":false,
+      "source" : "./bower_components/angular-material/angular-material.scss"
+    },
+    {
+      "plugin" : "nail-js-edge",
+      "tag"    : ["js"],
+      "babelify" : true,
+      "debug":true,
+      "minify":true,
+      "map":false,
+      "source" : "./script/index.js"
+    }
+  ]
+}

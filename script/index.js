@@ -1,0 +1,11 @@
+import controller from './controller/';
+import userController from './controller/user';
+import routeConfiguration from './config/route';
+import themeConfiguration from './config/theme';
+const angular = window.angular;
+const applicationModules = ["ngMaterial", "ngMdIcons", "ngRoute"];
+const application = angular.module('application', applicationModules);
+application.config(routeConfiguration);
+application.config(themeConfiguration);
+application.controller('controller', controller);
+application.controller('userController', userController);
