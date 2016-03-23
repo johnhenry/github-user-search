@@ -12,14 +12,14 @@
             <img ng-src="{{subject.user.avatar_url}}" class="md-media-md" alt="user image">
           </md-card-title-media>
         </md-card-title>
-        <md-card-content style="padding:0px">
+        <md-card-content>
           <md-toolbar>
             <h2 class="md-toolbar-tools">
               <span>Repositories</span>
             </h2>
           </md-toolbar>
           <md-list>
-            <md-list-item class="md-3-line" ng-repeat="repository in subject.repositories">
+            <md-list-item class="md-3-line" ng-repeat="repository in subject.repositories"  ng-animate="'animate'">
               <div class="md-list-item-text">
                 <h3 class="md-headline"><a href='{{repository.html_url}}' target="_blank">{{repository.name}}</a></h3>
                 <h4><ng-md-icon icon="star" style="fill: red">Stars</ng-md-icon><span>{{repository.stargazers_count}}</span></h4>
